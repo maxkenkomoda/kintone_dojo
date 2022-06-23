@@ -1,0 +1,62 @@
+/* ここに記載する */
+
+/* 一括で画像の横幅を画面に対して70%, 上下左右にマージンを追加する */
+main div img {
+  width: 70%;
+  display: block;
+  margin: 10px auto;
+}
+
+/* 今回は子要素側でmargin: 10px auto;で上下左右中央に置きたかったので
+画像の親要素に対して一括で、display: flex:を当てる */
+main div {
+  display: flex;
+}
+
+/* 背景色を当てる */
+#kintone-section {
+  background-color: #ffbf00;
+}
+#office-section {
+  background-color: #1992d4;
+}
+#garoon-section {
+  background-color: #003399;
+}
+
+#mailwise-section {
+  background-color: #df4356;
+}
+
+
+/* 以下は修正しない */
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+header {
+  background-color: #1aaedb;
+  border-bottom: #ead963 6px solid;
+}
+.container {
+  padding: 16px;
+  padding-left: 120px;
+}
+header h1,
+header h2 {
+  margin: 0;
+  color: #fff;
+  line-height: 1;
+}
+header h1 {
+  padding: 30px 0 5px 0;
+  font-size: 24px;
+  border-bottom: 1px dotted #fff;
+  font-weight: 500;
+}
+header h2 {
+  padding: 6px 0 0 0;
+  font-size: 14px;
+  font-weight: 400;
+}
