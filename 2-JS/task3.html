@@ -160,8 +160,6 @@
       // 課題③ ////////////////////////////////////////////////////////////////////////////
 
       const ulElement = document.getElementById('list');
-      // 空の配列を一度作る
-      const authEveryOneFolders = [];
       // fileManageのValuesのみを配列にする
       const fileManageDetails = Object.values(fileManage);
 
@@ -175,17 +173,11 @@
         // 閲覧権限がEveryOneの場合、配列に追加
         if (detail.viewAuth === 'Everyone') {
           authEveryOneFolders.push(detail.folderName);
+          const listElement = document.createElement('li');
+          listElement.innerHTML = detail.folderName;
+          ulElement.appendChild(listElement);
         }
       });
-
-      // 閲覧権限がEveryOneのフォルダ名が入った配列を繰り返して、<li>に入れていく処理
-      authEveryOneFolders.forEach((folderName) => {
-        const listElement = document.createElement('li');
-        listElement.innerHTML = folderName;
-        ulElement.appendChild(listElement);
-      });
-
-
     </script>
   </body>
 </html>
