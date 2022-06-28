@@ -53,34 +53,40 @@
     <script>
       // ここに処理を記載する
       'use strict';
-      // 変数の定義
+    // 変数の定義
+    // 主にElementの取得
       const secureOptionElement = document.getElementsByClassName('chk')[0];
       const diskOptionElement = document.getElementsByClassName('chk')[1];
       const totalPriceElement = document.getElementById('price');
+
+      // 最低ユーザー数でのライトコースでの料金
       const minTotalPrice = 3900;
+      // 最低ユーザー数
       const minUserNum = 5;
 
       // イベント発生時に関数を起動
       secureOptionElement.onclick = () => {
-        calculateMonthlyTotalPrice();
+        const total = calculateMonthlyTotalPrice();
+        totalPriceElement.innerText = total;
       };
 
       diskOptionElement.onclick = () => {
-        calculateMonthlyTotalPrice();
+        const total = calculateMonthlyTotalPrice();
+        totalPriceElement.innerText = total;
       };
 
-      /**
-       * 月額金額を計算する関数
-       */
+
+    /**
+     * 月額最低料金を計算する関数
+     * @returns {number} セキュアオプションとディスク増設を含めた月額料金
+     */
       const calculateMonthlyTotalPrice = () => {
         const secureOptionPrice = secureOptionElement.checked
           ? secureOptionElement.value * minUserNum
           : 0;
 
         const diskOptionPrice = diskOptionElement.checked ? 1000 : 0;
-        const total = minTotalPrice + secureOptionPrice + diskOptionPrice;
-
-        totalPriceElement.innerText = total;
+        return minTotalPrice + secureOptionPrice + diskOptionPrice;
       };
     </script>
   </body>
