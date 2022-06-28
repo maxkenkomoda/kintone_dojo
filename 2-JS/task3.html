@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dojo課題</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+      }
+      header {
+        background-color: #1aaedb;
+        border-bottom: #ead963 6px solid;
+      }
+      .container {
+        padding: 16px;
+        padding-left: 120px;
+      }
+      header h1,
+      header h2 {
+        margin: 0;
+        color: #fff;
+        line-height: 1;
+      }
+      header h1 {
+        padding: 30px 0 5px 0;
+        font-size: 24px;
+        border-bottom: 1px dotted #fff;
+        font-weight: 500;
+      }
+      header h2 {
+        padding: 6px 0 0 0;
+        font-size: 14px;
+        font-weight: 400;
+      }
+      table {
+        border-collapse: collapse;
+      }
+      td {
+        padding: 4px 8px;
+        border: 1px solid #000000;
+      }
+      tr#allFile {
+        color: #000;
+        background:#8fe5ff;
+      }
+      li {
+          margin-top:5px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>kintone dojo</h1>
+        <h2>JavaScript課題②</h2>
+      </div>
+    </header>
+    <main class="container">
+      <h1>ファイル管理一覧</h1>
+      <h2>全てのフォルダとアクセス権を表示</h2>
+      <table>
+        <tr id="allFile">
+          <td>フォルダ名</td>
+          <td>閲覧権限</td>
+          <td>編集権限</td>
+          <td>削除権限</td>
+        </tr>
+        <tr>
+          <td id="f001-folderName"></td>
+          <td id="f001-viewAuth"></td>
+          <td id="f001-editAuth"></td>
+          <td id="f001-deleteAuth"></td>
+        </tr>
+        <tr>
+          <td id="f002-folderName"></td>
+          <td id="f002-viewAuth"></td>
+          <td id="f002-editAuth"></td>
+          <td id="f002-deleteAuth"></td>
+        </tr>
+        <tr>
+          <td id="f003-folderName"></td>
+          <td id="f003-viewAuth"></td>
+          <td id="f003-editAuth"></td>
+          <td id="f003-deleteAuth"></td>
+        </tr>
+      </table>
+      <h2>閲覧権限が全員にあるフォルダ</h2>
+      <ul id="list"></ul>
+    </main>
+    <script>
+      // ここに処理を追記
+      'use strict';
+
+      //オブジェクトの定義
+      const fileManage = {
+        f001: {
+          folderName: '情報システム部',
+          viewAuth: 'Everyone',
+          editAuth: '情報システム部',
+          deleteAuth: '情報システム部',
+        },
+        f002: {
+          folderName: '経営管理部',
+          viewAuth: '経営管理部',
+          editAuth: '経営管理部',
+          deleteAuth: '経営管理部',
+        },
+        f003: {
+          folderName: '営業部',
+          viewAuth: 'Everyone',
+          editAuth: '営業部',
+          deleteAuth: '営業部',
+        },
+      };
+
+      // 課題① ////////////////////////////////////////////////////////////////////////////
+
+      console.log(fileManage);
+
+      // 課題② ////////////////////////////////////////////////////////////////////////////
+      /**
+       * 引数に渡されたものがObjectかどうかをチェックする関数
+       * @param {:any} value
+       * @returns boolean
+       */
+      const checkIsObject = (value) => {
+        return value !== null && typeof value === 'object';
+      };
+
+      // Objectを配列にする
+      const fileManageArray = Object.entries(fileManage);
+
+      // 配列にしたObjectを繰り返す
+      fileManageArray.forEach((value) => {
+        const fileNumber = value[0];
+        const authObject = value[1];
+
+        // authObjectの型がObjectでない場合、エラーを出す
+        if (!checkIsObject(authObject)) {
+          console.error('something wrong with file manage object');
+          return;
+        }
+
+        // authObjectのObjectのKeyとValueをそれぞれ配列にする
+        const authDetailsKeys = Object.keys(authObject);
+        const authDetailsValues = Object.values(authObject);
+
+        // ObjectのValueの配列をもとに再度繰り返して、HTMLのidを取得
+        // 取得したHTMLのinnerTextを変更する
+        authDetailsValues.forEach((value, index) => {
+          const currentTableDetailId = `${fileNumber}-${authDetailsKeys[index]}`;
+          const currentTableDetailElement =
+            document.getElementById(currentTableDetailId);
+          currentTableDetailElement.innerText = value;
+        });
+      });
+
+      // 課題③ ////////////////////////////////////////////////////////////////////////////
+
+      const ulElement = document.getElementById('list');
+      // 空の配列を一度作る
+      const authEveryOneFolders = [];
+      // fileManageのValuesのみを配列にする
+      const fileManageDetails = Object.values(fileManage);
+
+      fileManageDetails.forEach((detail) => {
+        // fileManageDetailsの型がObjectでない場合、エラーを出す
+        if (!checkIsObject(detail)) {
+          console.error('something wrong with file manage object');
+          return;
+        }
+
+        // 閲覧権限がEveryOneの場合、配列に追加
+        if (detail.viewAuth === 'Everyone') {
+          authEveryOneFolders.push(detail.folderName);
+        }
+      });
+
+      // 閲覧権限がEveryOneのフォルダ名が入った配列を繰り返して、<li>に入れていく処理
+      authEveryOneFolders.forEach((folderName) => {
+        const listElement = document.createElement('li');
+        listElement.innerHTML = folderName;
+        ulElement.appendChild(listElement);
+      });
+
+
+    </script>
+  </body>
+</html>
