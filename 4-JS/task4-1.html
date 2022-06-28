@@ -64,7 +64,7 @@
       // 最低ユーザー数
       const minUserNum = 5;
 
-      // イベント発生時に関数を起動
+      // イベント発生時に関数を起動し、合計を計算、後にHTMLを編集
       secureOptionElement.onclick = () => {
         const total = calculateMonthlyTotalPrice();
         totalPriceElement.innerText = total;
