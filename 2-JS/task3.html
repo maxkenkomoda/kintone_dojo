@@ -170,9 +170,8 @@
           return;
         }
 
-        // 閲覧権限がEveryOneの場合、配列に追加
+        // 閲覧権限がEveryOneの場合<li>で表示
         if (detail.viewAuth === 'Everyone') {
-          authEveryOneFolders.push(detail.folderName);
           const listElement = document.createElement('li');
           listElement.innerHTML = detail.folderName;
           ulElement.appendChild(listElement);
