@@ -85,8 +85,14 @@
     // イベント発生時に関数を起動
     calculateBtn.onclick = () => {
       // Optionの値を取得
-      const userNum = secureOptionUserNum[secureOptionUserNum.selectedIndex].value;
-      const diskNum = diskOptionGb[diskOptionGb.selectedIndex].value;
+      const userNum = Number(secureOptionUserNum[secureOptionUserNum.selectedIndex].value);
+      const diskNum = Number(diskOptionGb[diskOptionGb.selectedIndex].value);
+
+      if (isNaN(userNum) || isNaN(diskNum)) {
+        console.error('option value is wrong');
+        return
+      };
+
 
       const total = calculateMonthlyTotalPrice(userNum, diskNum);
       // HTMLを変更
@@ -107,6 +113,11 @@
       const diskOptionPrice = diskOptionElement.checked ? 1000 * diskNum : 0;
       return minTotalPrice + secureOptionPrice + diskOptionPrice;
     };
+
+
+
+
+
 
   </script>
   </body>
