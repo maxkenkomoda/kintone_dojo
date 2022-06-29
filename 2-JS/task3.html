@@ -119,7 +119,7 @@
 
       console.log(fileManage);
 
-      // 課題② ////////////////////////////////////////////////////////////////////////////
+      // 課題②と③ ////////////////////////////////////////////////////////////////////////////
       /**
        * 引数に渡されたものがObjectかどうかをチェックする関数
        * @param {:any} value
@@ -129,54 +129,38 @@
         return value !== null && typeof value === 'object';
       };
 
-      // Objectを配列にする
-      const fileManageArray = Object.entries(fileManage);
+      /**
+       * 引数として受け取った文字列を指定のリストに生成する
+       * 課題③用の関数
+       * @param {string} folderName
+       */
+      const setFolderList = (folderName) => {
+        const listElement = document.createElement('li');
+        listElement.innerHTML = folderName;
+        document.getElementById('list').appendChild(listElement);
+      };
 
-      // 配列にしたObjectを繰り返す
-      fileManageArray.forEach((value) => {
-        const fileNumber = value[0];
-        const authObject = value[1];
+      const fileManageKeys = Object.keys(fileManage);
 
-        // authObjectの型がObjectでない場合、エラーを出す
-        if (!checkIsObject(authObject)) {
-          console.error('something wrong with file manage object');
-          return;
-        }
+      fileManageKeys.forEach((key) => {
+        const currentAuthObject = fileManage[key];
+        checkIsObject(currentAuthObject);
 
-        // authObjectのObjectのKeyとValueをそれぞれ配列にする
-        const authDetailsKeys = Object.keys(authObject);
-        const authDetailsValues = Object.values(authObject);
+        Object.keys(currentAuthObject).forEach((authKey) => {
+          const currentId = `${key}-${authKey}`;
+          const currentValue = currentAuthObject[authKey];
+          document.getElementById(currentId).innerHTML = currentValue;
 
-        // ObjectのValueの配列をもとに再度繰り返して、HTMLのidを取得
-        // 取得したHTMLのinnerTextを変更する
-        authDetailsValues.forEach((value, index) => {
-          const currentTableDetailId = `${fileNumber}-${authDetailsKeys[index]}`;
-          const currentTableDetailElement =
-            document.getElementById(currentTableDetailId);
-          currentTableDetailElement.innerText = value;
+          // ここから下の処理は課題③用
+          const isEveryOneHasViewAuth =
+            authKey === 'viewAuth' && currentValue === 'Everyone';
+
+          if (isEveryOneHasViewAuth) {
+            setFolderList(currentAuthObject.folderName);
+          }
         });
       });
 
-      // 課題③ ////////////////////////////////////////////////////////////////////////////
-
-      const ulElement = document.getElementById('list');
-      // fileManageのValuesのみを配列にする
-      const fileManageDetails = Object.values(fileManage);
-
-      fileManageDetails.forEach((detail) => {
-        // fileManageDetailsの型がObjectでない場合、エラーを出す
-        if (!checkIsObject(detail)) {
-          console.error('something wrong with file manage object');
-          return;
-        }
-
-        // 閲覧権限がEveryOneの場合<li>で表示
-        if (detail.viewAuth === 'Everyone') {
-          const listElement = document.createElement('li');
-          listElement.innerHTML = detail.folderName;
-          ulElement.appendChild(listElement);
-        }
-      });
     </script>
   </body>
 </html>
