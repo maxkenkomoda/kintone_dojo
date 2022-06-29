@@ -79,8 +79,14 @@
     const diskOptionGb = document.getElementsByClassName('slct')[1];
     const totalPriceElement = document.getElementById('price');
 
+
     // 最低ユーザー数でのライトコースでの料金
     const minTotalPrice = 3900;
+    //その他の単価
+    const diskExpansionUnitPrice = Number(diskOptionElement.value);
+    const secureOptionUnitPrice = Number(secureOptionElement.value);
+
+
 
     // イベント発生時に関数を起動
     calculateBtn.onclick = () => {
@@ -88,11 +94,9 @@
       const userNum = Number(secureOptionUserNum[secureOptionUserNum.selectedIndex].value);
       const diskNum = Number(diskOptionGb[diskOptionGb.selectedIndex].value);
 
-      if (isNaN(userNum) || isNaN(diskNum)) {
-        console.error('option value is wrong');
-        return
-      };
-
+      //数字チェック
+      validateNumber(userNum);
+      validateNumber(diskNum);
 
       const total = calculateMonthlyTotalPrice(userNum, diskNum);
       // HTMLを変更
@@ -106,19 +110,32 @@
      * @returns {number} セキュアオプション*人数とディスク増設*disk容量を含めた月額料金
      */
     const calculateMonthlyTotalPrice = (userNum, diskNum) => {
+      //数字チェック
+      validateNumber(diskExpansionUnitPrice);
+      validateNumber(secureOptionUnitPrice);
+
       const secureOptionPrice = secureOptionElement.checked
-        ? secureOptionElement.value * userNum
+        ? secureOptionUnitPrice * userNum
         : 0;
 
-      const diskOptionPrice = diskOptionElement.checked ? 1000 * diskNum : 0;
+      const diskOptionPrice = diskOptionElement.checked ? diskExpansionUnitPrice * diskNum : 0;
       return minTotalPrice + secureOptionPrice + diskOptionPrice;
     };
 
-
-
-
-
-
+    /**
+     * 渡されたValueが数字かチェックする
+     * もし、数字じゃなかったらその時点で処理終了。
+     * 数字の場合はなにも返さない。
+     * 今回この課題で必要かわかりませんが。。。。
+     * @param {number} number
+     * @returns {void}
+     */
+    const validateNumber = (number) => {
+      if (isNaN(number)) {
+        console.error('option value is wrong');
+        return
+      };
+    };
   </script>
   </body>
 </html>
