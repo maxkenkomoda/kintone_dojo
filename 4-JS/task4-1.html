@@ -63,6 +63,9 @@
       const minTotalPrice = 3900;
       // 最低ユーザー数
       const minUserNum = 5;
+      //その他単価
+      const diskExpansionUnitPrice = Number(diskOptionElement.value);
+      const secureOptionUnitPrice = Number(secureOptionElement.value);
 
       // イベント発生時に関数を起動し、合計を計算、後にHTMLを編集
       secureOptionElement.onclick = () => {
@@ -81,12 +84,31 @@
      * @returns {number} セキュアオプションとディスク増設を含めた月額料金
      */
       const calculateMonthlyTotalPrice = () => {
+        //数字チェック
+        validateNumber(diskExpansionUnitPrice);
+        validateNumber(secureOptionUnitPrice);
+
         const secureOptionPrice = secureOptionElement.checked
-          ? secureOptionElement.value * minUserNum
+          ? secureOptionUnitPrice * minUserNum
           : 0;
 
-        const diskOptionPrice = diskOptionElement.checked ? 1000 : 0;
+        const diskOptionPrice = diskOptionElement.checked ? diskExpansionUnitPrice : 0;
         return minTotalPrice + secureOptionPrice + diskOptionPrice;
+      };
+
+      /**
+       * 渡されたValueが数字かチェックする
+       * もし、数字じゃなかったらその時点で処理終了。
+       * 数字の場合はなにも返さない。
+       * 今回この課題で必要かわかりませんが。。。。
+       * @param {number} number
+       * @returns {void}
+       */
+      const validateNumber = (number) => {
+        if (isNaN(number)) {
+          console.error('option value is wrong');
+          return;
+        };
       };
     </script>
   </body>
