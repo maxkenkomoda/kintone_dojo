@@ -152,10 +152,10 @@
           document.getElementById(currentId).innerHTML = currentValue;
 
           // ここから下の処理は課題③用
-          const isEveryOneHasViewAuth =
+          const isEveryoneHasViewAuth =
             authKey === 'viewAuth' && currentValue === 'Everyone';
 
-          if (isEveryOneHasViewAuth) {
+          if (isEveryoneHasViewAuth) {
             setFolderList(currentAuthObject.folderName);
           }
         });
