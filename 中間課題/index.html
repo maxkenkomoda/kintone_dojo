@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dojo課題</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>kintone dojo</h1>
+        <h2>中間課題</h2>
+      </div>
+    </header>
+    <main class="container">
+      <div>
+        <select class="option">
+          <option value="limit 5">5件</option>
+          <option value="limit 4">4件</option>
+          <option value="limit 3">3件</option>
+          <option value="limit 2">2件</option>
+          <option value="limit 1">1件</option>
+        </select>
+        <select class="option">
+          <option value="order by day desc">新しい順</option>
+          <option value="order by day asc">古い順</option>
+        </select>
+      </div>
+      <div>
+        <table id="news-table" style="border: 1px solid;">
+          <tr>
+            <th>日付</th>
+            <th>カテゴリ</th>
+            <th>タイトル</th>
+          </tr>
+          <tbody id="news-table-body"></tbody>
+        </table>
+      </div>
+    </main>
+    <script src="index.js">
+    </script>
+  </body>
+</html>
