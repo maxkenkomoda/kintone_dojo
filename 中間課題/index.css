@@ -1,0 +1,54 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  padding: 16px;
+}
+
+.news-section {
+  /* background-color: black; */
+  text-align: center;
+}
+
+#news-table {
+  width: 100%;
+  border-collapse: collapse;
+  /* border: #1aaedb 2px solid; */
+}
+
+#news-table tr th, #news-table-body tr td {
+  border: gray 0.5px solid;
+  padding: 20px;
+}
+
+
+
+
+
+/* 頂いたCSSを参考に.... */
+/* kintone dojo と 中間課題のみです。*/
+header {
+  background-color: #1aaedb;
+  border-bottom: #ead963 6px solid;
+}
+header h1,
+header h2 {
+  margin: 0;
+  color: #fff;
+  line-height: 1;
+}
+header h1 {
+  padding: 30px 0 5px 0;
+  font-size: 24px;
+  border-bottom: 1px solid #fff;
+  font-weight: 500;
+}
+header h2 {
+  padding: 6px 0 0 0;
+  font-size: 14px;
+  font-weight: 400;
+}

@@ -15,28 +15,31 @@
       </div>
     </header>
     <main class="container">
-      <div>
-        <select class="option">
-          <option value="limit 5">5件</option>
-          <option value="limit 4">4件</option>
-          <option value="limit 3">3件</option>
-          <option value="limit 2">2件</option>
-          <option value="limit 1">1件</option>
-        </select>
-        <select class="option">
-          <option value="order by day desc">新しい順</option>
-          <option value="order by day asc">古い順</option>
-        </select>
-      </div>
-      <div>
-        <table id="news-table" style="border: 1px solid;">
-          <tr>
-            <th>日付</th>
-            <th>カテゴリ</th>
-            <th>タイトル</th>
-          </tr>
-          <tbody id="news-table-body"></tbody>
-        </table>
+      <div class="news-section">
+        <h2>最新ニュース</h2>
+        <div>
+          <select class="option">
+            <option value="limit 5">5件</option>
+            <option value="limit 4">4件</option>
+            <option value="limit 3">3件</option>
+            <option value="limit 2">2件</option>
+            <option value="limit 1">1件</option>
+          </select>
+          <select class="option">
+            <option value="order by day desc">新しい順</option>
+            <option value="order by day asc">古い順</option>
+          </select>
+        </div>
+        <div>
+          <table id="news-table">
+            <tr>
+              <th>日付</th>
+              <th>カテゴリ</th>
+              <th>タイトル</th>
+            </tr>
+            <tbody id="news-table-body"></tbody>
+          </table>
+        </div>
       </div>
     </main>
     <script src="index.js">
