@@ -17,7 +17,7 @@
     <main class="container">
       <div class="news-section">
         <h2>最新ニュース</h2>
-        <div>
+        <div id="query-options">
           <select class="option">
             <option value="limit 5">5件</option>
             <option value="limit 4">4件</option>
@@ -30,16 +30,14 @@
             <option value="order by day asc">古い順</option>
           </select>
         </div>
-        <div>
-          <table id="news-table">
-            <tr>
-              <th>日付</th>
-              <th>カテゴリ</th>
-              <th>タイトル</th>
-            </tr>
-            <tbody id="news-table-body"></tbody>
-          </table>
-        </div>
+        <table id="news-table">
+          <tr>
+            <th>日付</th>
+            <th>カテゴリ</th>
+            <th>タイトル</th>
+          </tr>
+          <tbody id="news-table-body"></tbody>
+        </table>
       </div>
     </main>
     <script src="index.js">

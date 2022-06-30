@@ -48,15 +48,15 @@
       createTableElement(
         data[key].category.value,
         newRow,
-        `data[key].label.value`
+        `${data[key].label.value}`
       );
 
-      //タイトルセル作成
+      //コンテンツセル作成
       createTableAnchorElement(
         data[key].content.value,
         newRow,
-        data[key].content.link,
-        data[key].content.target,
+        data[key].url.value,
+        data[key].target.value,
         'content'
       );
     });
@@ -106,7 +106,6 @@
    */
   getNews('order by day desc').then((data) => {
     createTableBody(data);
-    console.log(data);
   });
 
   /**

@@ -10,14 +10,32 @@ body {
 }
 
 .news-section {
-  /* background-color: black; */
   text-align: center;
 }
 
+.container .news-section h2 {
+  font-size: 30px;
+  margin-bottom: 100px;
+}
+
+
+#query-options {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+select {
+  font-size: 20px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
 #news-table {
-  width: 100%;
+  font-size: ;
+  width: 80%;
   border-collapse: collapse;
-  /* border: #1aaedb 2px solid; */
+  margin: auto;
+  font-size: 90%;
 }
 
 #news-table tr th, #news-table-body tr td {
@@ -25,11 +43,29 @@ body {
   padding: 20px;
 }
 
+td.content {
+  text-align: left;
+
+}
+
+.ir {
+  background-color: #6a5acd;
+}
+
+.product {
+  background-color: #556b2f;
+}
+
+.company {
+  background-color: #a0522d;
+}
+
+.ir, .product, .company {
+  color: white;
+}
 
 
-
-
-/* 頂いたCSSを参考に.... */
+/* 今まで頂いたCSSを参考に.... */
 /* kintone dojo と 中間課題のみです。*/
 header {
   background-color: #1aaedb;
