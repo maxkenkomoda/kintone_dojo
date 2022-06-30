@@ -121,20 +121,11 @@
 
       // 課題②と③ ////////////////////////////////////////////////////////////////////////////
       /**
-       * 引数に渡されたものがObjectかどうかをチェックする関数
-       * @param {:any} value
-       * @returns boolean
-       */
-      const checkIsObject = (value) => {
-        return value !== null && typeof value === 'object';
-      };
-
-      /**
-       * 引数として受け取った文字列を指定のリストに生成する
        * 課題③用の関数
+       * 引数として受け取った文字列を指定の<li>に生成する
        * @param {string} folderName
        */
-      const setFolderList = (folderName) => {
+      const setFolderToHtmlList = (folderName) => {
         const listElement = document.createElement('li');
         listElement.innerHTML = folderName;
         document.getElementById('list').appendChild(listElement);
@@ -144,19 +135,18 @@
 
       fileManageKeys.forEach((key) => {
         const currentAuthObject = fileManage[key];
-        checkIsObject(currentAuthObject);
 
         Object.keys(currentAuthObject).forEach((authKey) => {
           const currentId = `${key}-${authKey}`;
-          const currentValue = currentAuthObject[authKey];
-          document.getElementById(currentId).innerHTML = currentValue;
+          const currentAuthValue = currentAuthObject[authKey];
+          document.getElementById(currentId).innerHTML = currentAuthValue;
 
-          // ここから下の処理は課題③用
+          // ここから下の処理は課題③用 ////////////////////////////////////////////////////////////
           const isEveryoneHasViewAuth =
-            authKey === 'viewAuth' && currentValue === 'Everyone';
+            authKey === 'viewAuth' && currentAuthValue === 'Everyone';
 
           if (isEveryoneHasViewAuth) {
-            setFolderList(currentAuthObject.folderName);
+            setFolderToHtmlList(currentAuthObject.folderName);
           }
         });
       });
