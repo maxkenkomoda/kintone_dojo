@@ -31,8 +31,6 @@ select {
 }
 
 #news-table {
-  font-size: ;
-  width: 80%;
   border-collapse: collapse;
   margin: auto;
   font-size: 90%;
@@ -62,6 +60,28 @@ td.content {
 
 .ir, .product, .company {
   color: white;
+}
+
+@media screen and (max-width: 900px) {
+  #news-table {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  #news-table {
+    font-size: 20%;
+  }
+
+  #news-table tr th, #news-table-body tr td {
+    border: gray 0.5px solid;
+    padding: 5px;
+  }
+
+  select {
+    border-radius: 10px;
+    padding: 5px;
+  }
 }
 
 
