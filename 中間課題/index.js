@@ -41,23 +41,25 @@
     const dataKeys = Object.keys(data);
     dataKeys.forEach((key) => {
       const newRow = newsTableBody.insertRow();
+      const newsData = data[key];
 
       // 日付の<td>作成
-      createTableData(data[key].day.value, newRow, 'day');
+      createTableData(newsData.day.value, 'day', newRow);
+
       // カテゴリ用の<td>作成
       createTableData(
-        data[key].category.value,
-        newRow,
-        `${data[key].label.value}`
+        newsData.category.value,
+        `${newsData.label.value}`,
+        newRow
       );
 
       //タイトル用の<td>作成
       createAnchorInTableData(
-        data[key].content.value,
-        newRow,
-        data[key].url.value,
-        data[key].target.value,
-        'content'
+        newsData.content.value,
+        newsData.url.value,
+        newsData.target.value,
+        'content',
+        newRow
       );
     });
   };
@@ -65,10 +67,10 @@
   /**
    * 引数をもとに<td></td>を作成する関数
    * @param {string} text innerTextとして使う
-   * @param {HTMLElement} targetRow 指定の列
    * @param {string} className cssで使用するClass名を指定
+   * @param {HTMLElement} targetRow 指定の列
    */
-  const createTableData = (text, targetRow, className) => {
+  const createTableData = (text, className, targetRow) => {
     const newCell = targetRow.insertCell();
     newCell.innerText = text;
     newCell.classList = className;
@@ -77,16 +79,16 @@
   /**
    * 引数をもとに、<td><a></a></td>を作る関数
    * @param {string} text innerTextとして使う
-   * @param {HTMLElement} targetRow 指定の列
    * @param {string} link URL
    * @param {string} target target=_blankなどを想定
+   * @param {HTMLElement} targetRow 指定の列
    */
   const createAnchorInTableData = (
     text,
-    targetRow,
     link,
     target,
-    className
+    className,
+    targetRow
   ) => {
     const newCell = targetRow.insertCell();
     newCell.classList = className;
@@ -103,7 +105,7 @@
   /**
    * 引数の文字列がmaxLength以上の場合、...をつける関数
    * @param {string} text
-   * @returns
+   * @return string text
    */
   const truncateSentence = (text) => {
     return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
