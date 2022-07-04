@@ -43,63 +43,21 @@
       const newRow = newsTableBody.insertRow();
       const newsData = data[key];
 
-      // 日付の<td>作成
-      createTableData(newsData.day.value, 'day', newRow);
+      // 日付追加
+      newRow.innerHTML += `<td class="day">${truncateSentence(
+        newsData.day.value
+      )}</td>`;
 
-      // カテゴリ用の<td>作成
-      createTableData(
-        newsData.category.value,
-        `${newsData.label.value}`,
-        newRow
-      );
+      // カテゴリ追加
+      newRow.innerHTML += `<td class="${
+        newsData.label.value
+      }">${truncateSentence(newsData.category.value)}</td>`;
 
-      //タイトル用の<td>作成
-      createAnchorInTableData(
-        newsData.content.value,
-        newsData.url.value,
-        newsData.target.value,
-        'content',
-        newRow
-      );
+      // タイトル追加
+      newRow.innerHTML += `<td><a href="${newsData.url.value}" target="${
+        newsData.target.value
+      }" class="content">${truncateSentence(newsData.content.value)}</a></td>`;
     });
-  };
-
-  /**
-   * 引数をもとに<td></td>を作成する関数
-   * @param {string} text innerTextとして使う
-   * @param {string} className cssで使用するClass名を指定
-   * @param {HTMLElement} targetRow 指定の列
-   */
-  const createTableData = (text, className, targetRow) => {
-    const newCell = targetRow.insertCell();
-    newCell.innerText = text;
-    newCell.classList = className;
-  };
-
-  /**
-   * 引数をもとに、<td><a></a></td>を作る関数
-   * @param {string} text innerTextとして使う
-   * @param {string} link URL
-   * @param {string} target target=_blankなどを想定
-   * @param {HTMLElement} targetRow 指定の列
-   */
-  const createAnchorInTableData = (
-    text,
-    link,
-    target,
-    className,
-    targetRow
-  ) => {
-    const newCell = targetRow.insertCell();
-    newCell.classList = className;
-
-    const newAnchor = document.createElement('a');
-    newAnchor.innerText = truncateSentence(text);
-    //以下2行ハードコードな気がしますが、繰り返しを使うとさらに行数を使うので、今回はハードコードで。。
-    newAnchor.setAttribute('href', link);
-    newAnchor.setAttribute('target', target);
-
-    newCell.appendChild(newAnchor);
   };
 
   /**
