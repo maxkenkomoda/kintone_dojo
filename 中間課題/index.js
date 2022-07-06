@@ -43,20 +43,18 @@
       const newRow = newsTableBody.insertRow();
       const newsData = data[key];
 
-      // 日付追加
-      newRow.innerHTML += `<td class="day">${truncateSentence(
-        newsData.day.value
-      )}</td>`;
-
-      // カテゴリ追加
-      newRow.innerHTML += `<td class="${
-        newsData.label.value
-      }">${truncateSentence(newsData.category.value)}</td>`;
-
-      // タイトル追加
-      newRow.innerHTML += `<td><a href="${newsData.url.value}" target="${
-        newsData.target.value
-      }" class="content">${truncateSentence(newsData.content.value)}</a></td>`;
+      newRow.innerHTML +=
+      `<td class="day">
+      ${truncateSentence(newsData.day.value)}
+      </td>
+      <td class="${newsData.label.value}">
+      ${truncateSentence(newsData.category.value)}
+      </td>
+      <td>
+      <a href="${newsData.url.value}" target="${newsData.target.value}" class="content">
+      ${truncateSentence(newsData.content.value)}
+      </a>
+      </td>`;
     });
   };
 
