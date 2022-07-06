@@ -1,9 +1,6 @@
 (() => {
   'use strict';
-  const kintoneEvents = [
-    'app.record.create.submit',
-    'app.record.edit.submit',
-  ];
+  const kintoneEvents = ['app.record.create.submit', 'app.record.edit.submit'];
 
   kintone.events.on(kintoneEvents, (event) => {
     const uniqueCtrlName = event.record.重複禁止項目.value;
@@ -13,8 +10,10 @@
         : // レコード編集の場合、検索結果から自分のレコードは外す(Userが何も編集せず、保存ボタン押した場合は保存させたいため)
           `重複禁止項目 = "${uniqueCtrlName}" and $id != ${event.record.$id.value}`;
 
+    const appId = kintone.app.getId();
+
     const params = {
-      app: 20,
+      app: appId,
       query,
       totalCount: true,
     };
