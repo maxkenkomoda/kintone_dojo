@@ -6,8 +6,9 @@
     // レコード追加画面に取得したeventのテーブルの値の配列の先頭はなにも入ってないので、消す
     tableRecords.shift();
 
-    const appId = kintone.app.getId()
-    const params = { app: appId };
+    const params = {
+      app: kintone.app.getId()
+    };
 
     // REST APIで取得
     return kintone
