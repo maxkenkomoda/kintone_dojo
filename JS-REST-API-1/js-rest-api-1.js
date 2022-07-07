@@ -7,7 +7,7 @@
     tableRecords.shift();
 
     const params = {
-      app: kintone.app.getId()
+      app: kintone.app.getId(),
     };
 
     // REST APIで取得
