@@ -1,2 +1,6 @@
 local/*
 .DS_Store
+/node_modules
+package**.json
+.eslintrc.js
+.prettierrc.json

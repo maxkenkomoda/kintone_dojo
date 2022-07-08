@@ -1,0 +1,110 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  padding: 16px;
+}
+
+.news-section {
+  text-align: center;
+}
+
+.container .news-section h2 {
+  font-size: 30px;
+  margin-bottom: 100px;
+}
+
+
+#query-options {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+select {
+  font-size: 20px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#news-table {
+  border-collapse: collapse;
+  margin: auto;
+  font-size: 90%;
+}
+
+#news-table tr th, #news-table-body tr td {
+  border: gray 0.5px solid;
+  padding: 20px;
+}
+
+td.content {
+  text-align: left;
+
+}
+
+.ir {
+  background-color: #6a5acd;
+}
+
+.product {
+  background-color: #556b2f;
+}
+
+.company {
+  background-color: #a0522d;
+}
+
+.ir, .product, .company {
+  color: white;
+}
+
+@media screen and (max-width: 900px) {
+  #news-table {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  #news-table {
+    font-size: 20%;
+  }
+
+  #news-table tr th, #news-table-body tr td {
+    border: gray 0.5px solid;
+    padding: 5px;
+  }
+
+  select {
+    border-radius: 10px;
+    padding: 5px;
+  }
+}
+
+
+/* 今まで頂いたCSSを参考に.... */
+/* kintone dojo と 中間課題のみに適応させてますです。*/
+header {
+  background-color: #1aaedb;
+  border-bottom: #ead963 6px solid;
+}
+header h1,
+header h2 {
+  margin: 0;
+  color: #fff;
+  line-height: 1;
+}
+header h1 {
+  padding: 30px 0 5px 0;
+  font-size: 24px;
+  border-bottom: 1px solid #fff;
+  font-weight: 500;
+}
+header h2 {
+  padding: 6px 0 0 0;
+  font-size: 14px;
+  font-weight: 400;
+}
