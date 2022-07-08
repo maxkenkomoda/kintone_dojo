@@ -14,12 +14,13 @@
       .then((response) => {
         const options = response.properties.Table.fields.Action5.options;
 
+
         // index順に並び替え
-        const orderedOptionTitles = Object.keys(options).sort((a, b) => {
-          const titleAIndex = options[a].index;
-          const titleBIndex = options[b].index;
-          return titleAIndex > titleBIndex ? 1 : -1;
-        });
+        const orderedOptionTitles = []
+        for (const option of Object.keys(options) ) {
+          const targetIndex = options[option].index
+          orderedOptionTitles[targetIndex] = option
+        }
 
         for (const title of orderedOptionTitles) {
           const tableData = {
